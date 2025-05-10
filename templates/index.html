@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>📝 لیست وظایف</h1>
+
+    <form method="POST" action="/tasks">
+        <input type="text" name="title" placeholder="تسک جدید..." required>
+        <button type="submit">افزودن</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.title }}
+            <form method="POST" action="/tasks/{{ task.id }}" style="display:inline;">
+                <input type="hidden" name="from_form" value="1">
+                <button type="submit">❌ حذف</button>
+            </form>
+
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
